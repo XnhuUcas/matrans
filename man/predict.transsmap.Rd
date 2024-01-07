@@ -24,6 +24,7 @@ a result list containing the predicted values on new data and the estimated coef
 Obtain predictions from a "trans.smap" object based on new samples.
 }
 \examples{
+\donttest{
 ## correct target model setting
 
 # generate simulation dataset
@@ -33,7 +34,7 @@ coeff0 <- cbind(
   as.matrix(c(1.4, -1.2, 1, -0.8, 0.65, 0.3) + 0.3),
   as.matrix(c(1.4, -1.2, 1, -0.8, 0.65, 0.3))
 )
-whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = as.matrix(c(para.true[, 2], 1.8)), err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "cor", if.heter = FALSE)
+whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = as.matrix(c(coeff0[, 2], 1.8)), err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "cor", if.heter = FALSE)
 data.train <- whole.data$data.train
 data.test <- whole.data$data.test
 
@@ -43,15 +44,15 @@ fit.transsmap <- trans.smap(train.data = data.train, nfold = 5, bs.para = list(b
 ma.weights <- fit.transsmap$weight.est
 
 # predict for new data
-pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test, bs.para = bs.para)
+pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
 pred.val <- pred.res$predict.val
-predict.risk <- sum((pred.val - data.test$data.x \%*\% data.test$beta.true - data.test$gz.te)^2) / size.test
+predict.risk <- sum((pred.val - data.test$data.x \%*\% data.test$beta.true - data.test$gz.te)^2) / 500
 
-\donttest{
 ## misspecified target model setting
 
 # generate simulation dataset
-whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = as.matrix(c(para.true[, 2], 1.8)), err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "cor", if.heter = FALSE)
+coeff.mis <- matrix(c(c(coeff0[, 1], 0.1), c(coeff0[, 2], 1.8)), ncol = 2)
+whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = coeff.mis, err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "mis", if.heter = FALSE)
 data.train <- whole.data$data.train
 data.test <- whole.data$data.test
 
@@ -64,9 +65,9 @@ ma.weights <- fit.transsmap$weight.est
 # predict for new data
 data.test.mis <- data.test
 data.test.mis$data.x <- data.test.mis$data.x[, -7]
-pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test.mis, bs.para = bs.para)
+pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test.mis, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
 pred.val <- pred.res$predict.val
-predict.risk <- sum((pred.val - data.test$data.x \%*\% data.test$beta.true - data.test$gz.te)^2) / size.test
+predict.risk <- sum((pred.val - data.test$data.x \%*\% data.test$beta.true - data.test$gz.te)^2) / 500
 }
 }
 \references{

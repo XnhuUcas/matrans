@@ -18,6 +18,7 @@
 #' @references Hu, X., & Zhang, X. (2023). Optimal Parameter-Transfer Learning by Semiparametric Model Averaging. Journal of Machine Learning Research, 24(358), 1-53.
 #' @export
 #' @importFrom stats rnorm
+#' @importFrom stats runif
 #' @importFrom MASS mvrnorm
 #'
 #' @examples
@@ -227,8 +228,8 @@ simdata.gen <- function(px, num.source = 4, size, coeff0, coeff.mis, err.sigma, 
         respon[[k]] <- datax[[k]] %*% beta.true[[k]] + gz[[k]] + err
       } else {
         beta.true[[k]] <- coeff0[, k]
-        xmat <- rho^abs(outer(1:p, 1:p, "-"))
-        datax[[k]] <- mvrnorm(size[k], rep(0, p), xmat)
+        xmat <- rho^abs(outer(1:px, 1:px, "-"))
+        datax[[k]] <- mvrnorm(size[k], rep(0, px), xmat)
         if (if.heter) {
           err <- c()
           for (ii in 1:size[k]) {

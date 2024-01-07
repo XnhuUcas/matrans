@@ -33,7 +33,7 @@ coeff0 <- cbind(
   as.matrix(c(1.4, -1.2, 1, -0.8, 0.65, 0.3) + 0.3),
   as.matrix(c(1.4, -1.2, 1, -0.8, 0.65, 0.3))
 )
-whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = as.matrix(c(para.true[, 2], 1.8)), err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "cor", if.heter = FALSE)
+whole.data <- simdata.gen(px = 6, num.source = 4, size = c(150, 200, 200, 150), coeff0 = coeff0, coeff.mis = as.matrix(c(coeff0[, 2], 1.8)), err.sigma = 0.5, rho = 0.5, size.test = 500, sim.set = "homo", tar.spec = "cor", if.heter = FALSE)
 data.train <- whole.data$data.train
 data.test <- whole.data$data.test
 
