@@ -82,7 +82,7 @@ ma.weights <- fit.transsmap$weight.est
 time.transsmap <- fit.transsmap$time.transsmap
 
 ## out-of-sample prediction results
-pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test, bs.para = bs.para)
+pred.res <- pred.transsmap(object = fit.transsmap, newdata = data.test, bs.para = bs.para)
 pred.val <- pred.res$predict.val
 ```
 

@@ -16,7 +16,6 @@
 #' @importFrom splines bs
 #'
 #' @examples
-#' \donttest{
 #' ## correct target model setting
 #'
 #' # generate simulation dataset
@@ -36,10 +35,11 @@
 #' ma.weights <- fit.transsmap$weight.est
 #'
 #' # predict for new data
-#' pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
+#' pred.res <- pred.transsmap(object = fit.transsmap, newdata = data.test, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
 #' pred.val <- pred.res$predict.val
 #' predict.risk <- sum((pred.val - data.test$data.x %*% data.test$beta.true - data.test$gz.te)^2) / 500
 #'
+#' \donttest{
 #' ## misspecified target model setting
 #'
 #' # generate simulation dataset
@@ -57,11 +57,11 @@
 #' # predict for new data
 #' data.test.mis <- data.test
 #' data.test.mis$data.x <- data.test.mis$data.x[, -7]
-#' pred.res <- predict.transsmap(object = fit.transsmap, newdata = data.test.mis, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
+#' pred.res <- pred.transsmap(object = fit.transsmap, newdata = data.test.mis, bs.para = list(bs.df = rep(3, 3), bs.degree = rep(3, 3)))
 #' pred.val <- pred.res$predict.val
 #' predict.risk <- sum((pred.val - data.test$data.x %*% data.test$beta.true - data.test$gz.te)^2) / 500
 #' }
-predict.transsmap <- function(object, newdata, bs.para) {
+pred.transsmap <- function(object, newdata, bs.para) {
   q <- ncol(newdata$data.z)
   p <- ncol(newdata$data.x)
   size.test <- nrow(newdata$data.x)
