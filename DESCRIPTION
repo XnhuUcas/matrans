@@ -1,0 +1,20 @@
+Package: matrans
+Title: Optimal transfer learning via frequentist model averaging
+Version: 0.0.0.9000
+Authors@R: 
+    person("Xiaonan", "Hu", , "xiaonanhu@cnu.edu.cn", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7614-2249"))
+Description: Transfer learning, as a prevailing technique in computer sciences, aims to improve the performance of target model by leveraging auxiliary information from heterogeneous source data. This package provides novel tools for multi-source transfer learning under some statistical models based on frequentist model averaging strategy, including generalized linear models, partially linear models. Unlike existing transfer learning approaches, this method can adaptively integrate the auxiliary information through data-driven weight assignments to avoid negative transfer. This is the first package for transfer learning based on the optimal model averaging frameworks, providing efficient implementation for practitioners in multi-source data modeling. For details, please see the relevant paper: Hu, X., & Zhang, X. (2023). Optimal Parameter-Transfer Learning by Semiparametric Model Averaging. Journal of Machine Learning Research, 24(358), 1-53. <http://jmlr.org/papers/v24/23-0030.html>
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    caret,
+    MASS,
+    quadprog,
+    splines,
+    stats
+Suggests: 
+    knitr,
+    rmarkdown
