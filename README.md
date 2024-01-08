@@ -8,13 +8,11 @@
 
 This package provides prediction tools under multi-source transfer
 learning framework based on frequentist model averaging strategy. It is
-primarily built on several statistical model frameworks, including
+primarily built on some statistical model frameworks, including
 generalized linear models, partially linear models. Unlike existing
-approaches, the proposed methods can adaptively integrate the auxiliary
-information from different sources and possess asymptotic optimality for
-prediction on the target model. It is worth noting that this package is
-the first open-source software package for transfer learning based on
-the optimal model averaging methods, providing convenient and efficient
+transfer learning approaches, the proposed methods can adaptively integrate the auxiliary
+information from different sources through data-driven weight assignments. It is worth noting that this package is
+the first open-source software package for transfer learning based on the optimal model averaging technique, providing efficient
 computational tools for practitioners in multi-source data modeling. For
 specific details, please refer to the following literature:
 
