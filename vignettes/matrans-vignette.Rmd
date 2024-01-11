@@ -85,6 +85,10 @@ $$
   \widehat{\bm w}=\arg\min\limits_{\bm w\in\mathcal{W}}CV(\bm w).
 $$
 
+The flowchart of the Trans-SMAP is shown as follows.
+
+![](flowchart.png){width=80%}
+
 
 # Implementation{#implement}
 
@@ -112,6 +116,7 @@ library(matrans)
 First, we generate simulation datasets with the same settings for $M=3$ as Section 4.1 in Hu and Zhang (2023) through the function `simdata.gen`.
 
 ```{r, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+set.seed(1)
 ## sample size
 size <- c(150, 200, 200, 150)
 ## shared coefficient vectors for different models
@@ -145,7 +150,7 @@ data.test <- whole.data$data.test
 
 Second, we apply the function `trans.smap` to estimate the candidate models and model averaging weights based on the training data.
 
-```{r, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+```{r, tidy=TRUE, tidy.opts=list(width.cutoff=70), collapse=FALSE, comment='', warning=FALSE}
 ## hyperparameters for B-splines
 bs.para <- list(bs.df = rep(3, 3), bs.degree = rep(3, 3))
 ## the second model is misspecified
@@ -159,7 +164,7 @@ fit.transsmap$time.transsmap
 ```
 
 Finally, we apply the function `pred.transsmap` to make predictions on new data from the target model based on the fitting models.
-```{r, tidy=TRUE, tidy.opts=list(width.cutoff=70)}
+```{r, tidy=TRUE, tidy.opts=list(width.cutoff=70), collapse=FALSE, comment='', warning=FALSE}
 ## prediction using testing data
 pred.res <- pred.transsmap(object = fit.transsmap, newdata = data.test, bs.para = bs.para)
 ## predicted values for the new observations of predictors
