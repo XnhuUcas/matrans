@@ -8,17 +8,19 @@
 
 This package provides prediction tools under multi-source transfer
 learning framework based on frequentist model averaging strategy. It is
-primarily built on some statistical model frameworks, including
-generalized linear models, partially linear models. Unlike existing
-transfer learning approaches, the proposed methods can adaptively integrate the auxiliary
-information from different sources through data-driven weight assignments. It is worth noting that this package is
-the first open-source software package for transfer learning based on the optimal model averaging technique, providing efficient
+primarily built on statistical model frameworks, including linear
+regression models, partially linear models. Unlike existing approaches,
+the proposed methods can adaptively integrate the auxiliary information
+from different sources and possess asymptotic optimality for prediction
+on the target model. It is worth noting that this package is the first
+open-source software package for transfer learning based on the optimal
+model averaging methods, providing convenient and efficient
 computational tools for practitioners in multi-source data modeling. For
 specific details, please refer to the following literature:
 
 \[1\] Hu, X., & Zhang, X. (2023). [Optimal Parameter-Transfer Learning
 by Semiparametric Model
-Averaging](http://jmlr.org/papers/v24/23-0030.html). Journal of Machine
+Averaging](https://jmlr.org/papers/v24/23-0030.html). Journal of Machine
 Learning Research, 24(358), 1-53.
 
 Any questions or comments, please don’t hesitate to contact with me any
